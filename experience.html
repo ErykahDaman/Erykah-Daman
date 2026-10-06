@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"><title>Experience</title></head><body>
+<video id="bgvideo" autoplay muted loop playsinline><source src="assets/background.mp4" type="video/mp4"></video><canvas id="bg"></canvas>
+<main>
+<div class="tabs" role="tablist" id="tb"></div>
+<section class="win"><div class="t"><span id="ttl"></span><i></i></div><div class="c"><div class="feature-grid" id="list"></div></div></section>
+</main>
+<script src="data.js"></script><script src="main.js"></script>
+<script>
+const TABS={projects:["🎮 PROJECTS","PROJECT_EXPERIENCE",PROJECTS],work:["💼 WORK & STARTUP","WORK_EXPERIENCE",WORK]};
+const card=i=>{
+const ok=u=>u&&!u.startsWith('PASTE');
+return `<article class="feature-box"><div class="fc"><h3>${i.title}</h3><span class="ev">${i.event}</span><p>${i.desc}</p><div>${tags(i.tags)}</div>
+<div class="btns">${ok(i.repo)?`<a href="${i.repo}" target="_blank" rel="noopener">⌘ GITHUB REPO</a>`:''}${ok(i.live)?`<a href="${i.live}" target="_blank" rel="noopener">▶ LIVE DEMO</a>`:''}</div></div></article>`};
+const show=k=>{const[t,h,d]=TABS[k];ttl.textContent=h;[...tb.children].forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));list.innerHTML=d.map(card).join('')};
+Object.keys(TABS).forEach(k=>{const b=document.createElement('button');b.textContent=TABS[k][0];b.dataset.k=k;b.setAttribute('role','tab');b.onclick=()=>show(k);tb.append(b)});
+show('projects');
+</script></body></html>

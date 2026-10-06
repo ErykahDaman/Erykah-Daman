@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"><title>Home</title></head><body><video id="bgvideo" autoplay muted loop playsinline><source src="assets/background.mp4" type="video/mp4"></video><canvas id="bg"></canvas>
+<main>
+<section class="win"><div class="t">PLAYER_ONE.EXE<i></i></div><div class="c"><h1 id="n" style="font-size:1.1rem;margin-bottom:10px"></h1><p id="s"></p></div></section>
+<section class="win pink"><div class="t">ACHIEVEMENTS.DAT<i></i></div><div class="c" id="wins"></div></section>
+<section class="win peach"><div class="t">QUEST_LOG (PROJECTS)<i></i></div><div class="c"><div class="grid" id="proj"></div><p><a class="btn" href="experience.html">OPEN ALL QUESTS</a></p></div></section>
+</main>
+<script src="data.js"></script><script src="main.js"></script>
+<script>n.textContent=ME.name;s.textContent=ME.summary;
+wins.innerHTML=WINS.map(w=>'<div class="ach"><span class="ic">'+w.icon+'</span><div><h3 style="font-size:.7rem">'+w.title+'</h3>'+w.note+'</div></div>').join('');
+proj.innerHTML=PROJECTS.map(p=>'<div class="card"><h3>'+p.title+'</h3>'+tags(p.tags)+'</div>').join('');</script></body></html>

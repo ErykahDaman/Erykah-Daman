@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"><title>About</title></head><body><video id="bgvideo" autoplay muted loop playsinline><source src="assets/background.mp4" type="video/mp4"></video><canvas id="bg"></canvas>
+<main><section class="win pink"><div class="t">PLAYER_PROFILE<i></i></div>
+<div class="book"><div>
+<div class="avatar" id="av"></div>
+<div class="row"><span>Name</span><b id="nm"></b></div><div class="row"><span>Class</span><b id="cl"></b></div>
+<div class="row"><span>Season</span><b id="se"></b></div><div class="row"><span>Home</span><b id="ho"></b></div><div class="row"><span>Status</span><b id="st"></b></div>
+</div><div>
+<div class="tabs" role="tablist" id="tb"></div><div id="pane" style="margin-top:16px"></div></div></div></section></main>
+<script src="data.js"></script><script src="main.js"></script>
+<script>
+nm.textContent=ME.name;cl.textContent=ME.class;se.textContent=ME.season;ho.textContent=ME.home;st.textContent=ME.status;
+const img=new Image();img.onload=()=>av.style.backgroundImage='url('+ME.avatar+')';img.onerror=()=>av.textContent=ME.emoji;img.src=ME.avatar;
+const T={BIO:()=>'<p>'+ME.bio+'</p>',SKILLS:()=>ME.skills.map(s=>s[0]+'<div class="xp"><span style="width:'+s[1]+'%"></span></div>').join(''),
+EDUCATION:()=>ME.education.map(e=>'<div class="card"><h3>'+e[0]+'</h3>'+e[1]+'</div>').join(''),CONTACT:()=>ME.contact.map(c=>'<div class="row"><span>'+c[0]+'</span><b>'+c[1]+'</b></div>').join('')};
+Object.keys(T).forEach((k,i)=>{const b=document.createElement('button');b.textContent=k;b.setAttribute('role','tab');b.onclick=()=>{[...tb.children].forEach(x=>x.setAttribute('aria-selected',x===b));pane.innerHTML=T[k]()};tb.append(b);if(!i)b.click()});
+</script></body></html>
